@@ -12,9 +12,9 @@ public class DatePicker {
     @Column(unique=true)
     private String id;
     private String title;
-    @OneToMany(mappedBy="datePicker", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="datePicker", cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
     private List<DatePickerDate> dates = new ArrayList<>();
-    private int count;
+    private int inviteCount;
 
     @PrePersist
     public void assignId() {
@@ -25,16 +25,16 @@ public class DatePicker {
 
     public DatePicker() {}
 
-    public DatePicker(String id, String title, List<DatePickerDate> dates, int count) {
+    public DatePicker(String id, String title, List<DatePickerDate> dates, int inviteCount) {
         this.id = id;
         this.title = title;
         this.dates = dates;
-        this.count = count;
+        this.inviteCount = inviteCount;
     }
 
-    public DatePicker(String title, int count) {
+    public DatePicker(String title, int inviteCount) {
         this.title = title;
-        this.count = count;
+        this.inviteCount = inviteCount;
     }
 
     public String getId() {
@@ -49,8 +49,8 @@ public class DatePicker {
         return dates;
     }
 
-    public int getCount() {
-        return count;
+    public int getInviteCount() {
+        return inviteCount;
     }
 
     public void setId(String id) {
@@ -62,10 +62,25 @@ public class DatePicker {
     }
 
     public void setDates(List<DatePickerDate> dates) {
+        if (dates == null) return;
+        for (DatePickerDate date : dates) {
+            date.setDatePicker(this);
+        }
         this.dates = dates;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setInviteCount(int count) {
+        this.inviteCount = count;
+    }
+
+    public void addDate(DatePickerDate date) {
+        date.setDatePicker(this);
+        this.dates.add(date);
+    }
+
+    public void addDates(List<DatePickerDate> dates) {
+        for(DatePickerDate date : dates) {
+            addDate(date);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.cswanson.datepickerspring.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -10,18 +11,18 @@ public class DatePickerDate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate date;
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "datePicker_id")
+    @JoinColumn(name = "date_picker_id")
     private DatePicker datePicker;
-    private int count = 1;
+    private int voteCount = 1;
 
     public DatePickerDate() {
     }
 
-    public DatePickerDate(LocalDate date, DatePicker datePicker, int count) {
+    public DatePickerDate(LocalDate date, DatePicker datePicker) {
         this.date = date;
         this.datePicker = datePicker;
-        this.count = count;
     }
 
     public int getId() {
@@ -48,11 +49,11 @@ public class DatePickerDate {
         this.datePicker = datePicker;
     }
 
-    public int getCount() {
-        return count;
+    public int getVoteCount() {
+        return voteCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setVoteCount(int voteCount) {
+        this.voteCount = voteCount;
     }
 }

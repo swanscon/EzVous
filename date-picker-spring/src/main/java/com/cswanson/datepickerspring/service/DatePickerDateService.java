@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class DatePickerDateService {
@@ -18,23 +19,29 @@ public class DatePickerDateService {
     }
 
     public void createDatePickerDate(DatePicker datePicker, LocalDate localDate) {
-        DatePickerDate datePickerDate = new DatePickerDate();
-        datePickerDate.setDatePicker(datePicker);
-        datePickerDate.setDate(localDate);
-        datePickerDateRepo.save(datePickerDate);
+        if (datePicker == null || localDate == null) {
+            throw new IllegalArgumentException("DatePicker and date must not be null.");
+        }
+        DatePickerDate date = new DatePickerDate(localDate, datePicker);
+        datePickerDateRepo.save(date);
     }
 
     public DatePickerDate getDatePickerDate(Integer id) {
-        return datePickerDateRepo.findById(id).orElseThrow(EntityNotFoundException::new);
+        return datePickerDateRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("Date not found: " + id));
     }
 
-    public void updateDatePickerDateCount(Integer id) {
-        DatePickerDate datePickerDate = getDatePickerDate(id);
-        datePickerDate.setCount(datePickerDate.getCount() + 1);
-        datePickerDateRepo.save(datePickerDate);
+    public void updateVoteCount(List<Integer> dateIds) {
+        List<DatePickerDate> dates = datePickerDateRepo.findAllById(dateIds);
+        for (DatePickerDate date : dates) {
+            date.setVoteCount(date.getVoteCount() + 1);
+        }
+        datePickerDateRepo.saveAll(dates);
     }
 
     public void deleteDatePickerDate(Integer id) {
+        if(!datePickerDateRepo.existsById(id)) {
+            throw new IllegalArgumentException("Date not found: " + id);
+        }
         datePickerDateRepo.deleteById(id);
     }
 }

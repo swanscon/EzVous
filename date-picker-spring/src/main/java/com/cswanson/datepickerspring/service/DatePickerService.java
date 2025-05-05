@@ -16,28 +16,28 @@ public class DatePickerService {
         this.datePickerRepo = datePickerRepo;
     }
 
-    public void createDatePicker(String title, Integer count) {
+    public DatePicker createDatePicker(String title, Integer voteCount, List<DatePickerDate> dates) {
         DatePicker datePicker = new DatePicker();
         datePicker.setTitle(title);
-        datePicker.setCount(count);
-        datePickerRepo.save(datePicker);
+        datePicker.setInviteCount(voteCount);
+        for(DatePickerDate date : dates) {
+            datePicker.addDate(date);
+        }
+        return datePickerRepo.save(datePicker);
     }
 
     public DatePicker getDatePicker(String id) {
-        return datePickerRepo.findById(id);
+        return datePickerRepo.findById(id).orElseThrow(() -> new IllegalArgumentException("No such datepicker: " + id));
     }
 
     public List<DatePicker> getDatePickers() {
         return datePickerRepo.findAll();
     }
 
-    public void updateDatePickerDates(String id, List<DatePickerDate> datePickerDates) {
-        DatePicker datePicker = datePickerRepo.findById(id);
-        datePicker.setDates(datePickerDates);
-        datePickerRepo.save(datePicker);
-    }
-
     public void deleteDatePicker(String id) {
+        if (!datePickerRepo.existsById(id)) {
+            throw new IllegalArgumentException("Cannot delete. No DatePicker with ID: " + id);
+        }
         datePickerRepo.deleteById(id);
     }
 }
