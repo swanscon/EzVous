@@ -1,20 +1,19 @@
 package com.cswanson.datepickerspring.entity;
 
 import com.cswanson.datepickerspring.utils.IdGenerator;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.PrePersist;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class DatePicker {
     @Id
+    @Column(unique=true)
     private String id;
     private String title;
-    @OneToMany
-    private List<DatePickerDate> dates;
+    @OneToMany(mappedBy="datePicker", cascade=CascadeType.ALL)
+    private List<DatePickerDate> dates = new ArrayList<>();
     private int count;
 
     @PrePersist
@@ -33,9 +32,8 @@ public class DatePicker {
         this.count = count;
     }
 
-    public DatePicker(String title, List<DatePickerDate> dates, int count) {
+    public DatePicker(String title, int count) {
         this.title = title;
-        this.dates = dates;
         this.count = count;
     }
 
