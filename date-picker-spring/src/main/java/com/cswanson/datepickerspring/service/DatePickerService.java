@@ -3,6 +3,7 @@ package com.cswanson.datepickerspring.service;
 import com.cswanson.datepickerspring.entity.DatePicker;
 import com.cswanson.datepickerspring.entity.DatePickerDate;
 import com.cswanson.datepickerspring.repository.DatePickerRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class DatePickerService {
         return datePickerRepo.findAll();
     }
 
+    @Transactional
     public void deleteDatePicker(String id) {
         if (!datePickerRepo.existsById(id)) {
             throw new IllegalArgumentException("Cannot delete. No DatePicker with ID: " + id);
