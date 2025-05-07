@@ -9,40 +9,76 @@ export default function CreatePage() {
 
     const handleChange = (e) => {
         e.preventDefault();
-        if(e.target.name === "title") setTitle(e.target.value);
-        else if(e.target.name === "date") handleUpdateDateList(e.target.value);
-        else setAttendeeCount(e.target.value)
-    }
+        if (e.target.name === "title") setTitle(e.target.value);
+        else if (e.target.name === "date") handleUpdateDateList(e.target.value);
+        else if (e.target.name === "attendees")
+            setAttendeeCount(e.target.value);
+    };
 
-    const handleUpdateDateList = (newDate) => {
-        setDateList((dateList) => [...dateList, newDate]);
-    }
+    const handleUpdateDateList = (index, newDate) => {
+        setDateList((prevList) => {
+            const updated = [...prevList];
+            updated[index] = newDate;
+            return updated;
+        })
+    };
 
     const handleIncrementDateCount = () => {
         setDateCount(dateCount + 1);
     };
 
+    const isValid =
+        title.trim() !== "" &&
+        dateList.length > 0 &&
+        parseInt(attendeeCount) > 0;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         submitForm(title, dateList, attendeeCount);
         // eventually will useNavigate("/{id}")
-    }
+    };
 
     return (
         <>
             <div>
                 <form type="submit" onSubmit={handleSubmit}>
-                    <input type="text" placeholder="Title" name="title" onChange={handleChange}/>
-                    {Array(dateCount).fill(null).map((_, index) => (
-                        <div key={index}>
-                            <input type="date" name="date" onChange={handleChange}/>
-                            <button type="button" onClick={handleIncrementDateCount}>
-                                +
-                            </button>
-                        </div>
-                    ))}
-                    <input type="number" placeholder="Attendees" name="attendees" onChange={handleChange}/>
-                    <button type="submit">Create</button>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            name="title"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    {Array(dateCount)
+                        .fill(null)
+                        .map((_, index) => (
+                            <div key={index}>
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={dateList[index] || ""}
+                                    onChange={(e) => handleUpdateDateList(index, e.target.value)}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleIncrementDateCount}
+                                >
+                                    +
+                                </button>
+                            </div>
+                        ))}
+                    <div>
+                        <input
+                            type="number"
+                            placeholder="Attendees"
+                            name="attendees"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button type="submit" disabled={!isValid}>
+                        Create
+                    </button>
                 </form>
             </div>
         </>

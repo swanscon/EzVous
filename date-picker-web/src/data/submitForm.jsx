@@ -1,10 +1,26 @@
-export default function submitForm(title, dateList, count) {
-    // eventually will call backend for PostRequest
-    const dateListString = () => {
-        return dateList.map((d, i) =>
-            i === dateList.length - 1 ? `${d}.` : `${d}, `
-        ).join('');
-    };
+export default async function submitForm(title, dateList, count) {
+    const data ={
+        title: title,
+        inviteCount: parseInt(count),
+        dates: dateList.map(date => ({ date }))
+    }
 
-    console.log(`Title: ${title}; Dates: ${dateListString()}; Attendees: ${count}`);
+    try {
+        const response = await fetch("http://localhost:8080/api/datepicker/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(!response.ok) {
+            throw new Error("Failed to create DatePicker");
+        }
+
+        const result = await response.json();
+        console.log("Created DatePicker: ", result);
+    } catch (error) {
+        console.error("Error submitting form: ", error.message);
+    }
 }
