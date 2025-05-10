@@ -27,7 +27,7 @@ export default function PickerPage() {
 
     const handleSubmit = async () => {
         const success = await submitVotes(id, selectedDates);
-        if(success) navigate(`/${id}/submitted`, { state: { title: datePicker.title } });
+        if(success) navigate(`/${id}/submitted`, { state: { id: datePicker.id, title: datePicker.title } });
         else alert("Unable to submit votes.");
     };
 
@@ -51,6 +51,7 @@ export default function PickerPage() {
                                 ? "bold"
                                 : "normal",
                         }}
+                        className="datePickerDate"
                     >
                         {date.date} — Votes: {date.voteCount}
                     </li>
