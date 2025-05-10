@@ -23,6 +23,6 @@ export default async function submitForm(title, dateList, count) {
         return [true, result.id];
     } catch (error) {
         console.error("Error submitting form: ", error.message);
-        return [false, f`Error submitting form: ${error.message}`];
+        return [false, "Error submitting form"];
     }
 }

@@ -35,9 +35,9 @@ export default function CreatePage() {
         dateList.length > 0 &&
         parseInt(attendeeCount) > 0;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const [success, result] = submitForm(title, dateList, attendeeCount);
+        const [success, result] = await submitForm(title, dateList, attendeeCount);
         if(success) {
             navigate("/") // eventually navigates to f`/${result}`
         } else {
