@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import submitForm from "../data/submitForm";
 
 export default function CreatePage() {
@@ -6,6 +7,8 @@ export default function CreatePage() {
     const [dateCount, setDateCount] = useState(1);
     const [dateList, setDateList] = useState([]);
     const [attendeeCount, setAttendeeCount] = useState(0);
+
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -34,8 +37,12 @@ export default function CreatePage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        submitForm(title, dateList, attendeeCount);
-        // eventually will useNavigate("/{id}")
+        const [success, result] = submitForm(title, dateList, attendeeCount);
+        if(success) {
+            navigate("/") // eventually navigates to f`/${result}`
+        } else {
+            alert(result);
+        }
     };
 
     return (

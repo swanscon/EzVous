@@ -20,7 +20,9 @@ export default async function submitForm(title, dateList, count) {
 
         const result = await response.json();
         console.log("Created DatePicker: ", result);
+        return [true, result.id];
     } catch (error) {
         console.error("Error submitting form: ", error.message);
+        return [false, f`Error submitting form: ${error.message}`];
     }
 }
