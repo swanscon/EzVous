@@ -39,7 +39,7 @@ export default function CreatePage() {
         e.preventDefault();
         const [success, result] = await submitForm(title, dateList, attendeeCount);
         if(success) {
-            navigate("/") // eventually navigates to f`/${result}`
+            navigate(`/${result}`);
         } else {
             alert(result);
         }
