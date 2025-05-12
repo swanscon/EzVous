@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import formatDate from "../utils/formatDate";
 import submitVotes from "../data/submitVotes";
 
 export default function PickerPage() {
@@ -36,24 +37,24 @@ export default function PickerPage() {
     return (
         <div>
             <h1>{datePicker.title}</h1>
+            <p>Select all dates you are available.</p>
             <ul>
                 {datePicker.dates.map((date) => (
                     <li
                         key={date.id}
                         onClick={() => handleVote(date.id)}
                         style={{
-                            listStyle: "none",
                             cursor: "pointer",
+                            border: selectedDates.includes(date.id)
+                                ? "3px solid lightgreen"
+                                : "3px solid #cccccc",
                             backgroundColor: selectedDates.includes(date.id)
-                                ? "green"
-                                : "grey",
-                            fontWeight: selectedDates.includes(date.id)
-                                ? "bold"
-                                : "normal",
+                                ? "darkgreen"
+                                : "#cccccc",
                         }}
                         className="datePickerDate"
                     >
-                        {date.date} — Votes: {date.voteCount}
+                        {formatDate(date.date)}
                     </li>
                 ))}
             </ul>
@@ -62,7 +63,7 @@ export default function PickerPage() {
                 onClick={handleSubmit}
                 disabled={selectedDates.length === 0}
             >
-                Submit Votes
+                Submit Dates
             </button>
         </div>
     );

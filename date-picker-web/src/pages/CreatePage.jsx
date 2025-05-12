@@ -43,7 +43,7 @@ export default function CreatePage() {
             attendeeCount
         );
         if (success) {
-            navigate(`/${result}`);
+            navigate(`/${result}/share`, { state: { title } });
         } else {
             alert(result);
         }

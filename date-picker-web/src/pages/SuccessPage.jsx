@@ -7,7 +7,7 @@ export default function SuccessPage() {
 
     return (
         <div>
-            <h3>Successfully submitted votes for {title || "TITLE NOT FOUND"}!</h3>
+            <h3>Successfully submitted votes for <b>{title || "TITLE NOT FOUND"}</b>!</h3>
             <NavLink to={`/${id}/results`}><button>See Results</button></NavLink>
         </div>
     )

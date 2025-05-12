@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
+import NavBar from "../components/NavBar"
 
 export default function HomePage() {
     return (
-        <>
+        <>  
             <img src='ExV-logo.png' className="img-logo"/>
             <h1>Welcome to EzVous</h1>
             <h4 style={{ fontStyle: "italic", letterSpacing: ".1em"}}>pronounced (AY-voo)</h4>

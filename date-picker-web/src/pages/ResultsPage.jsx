@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ResultsKey from "../components/ResultsKey";
 import voteColor from "../utils/voteColor";
 import formatDate from "../utils/formatDate";
 
@@ -44,6 +45,7 @@ export default function ResultsPage() {
                         </li>
                     ))}
                 </ul>
+                <ResultsKey />
             </div>
         </div>
     );
