@@ -23,7 +23,7 @@ export default function CreatePage() {
             const updated = [...prevList];
             updated[index] = newDate;
             return updated;
-        })
+        });
     };
 
     const handleIncrementDateCount = () => {
@@ -37,12 +37,23 @@ export default function CreatePage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const [success, result] = await submitForm(title, dateList, attendeeCount);
-        if(success) {
+        const [success, result] = await submitForm(
+            title,
+            dateList,
+            attendeeCount
+        );
+        if (success) {
             navigate(`/${result}`);
         } else {
             alert(result);
         }
+    };
+
+    const handleClearForm = () => {
+        setTitle("");
+        setDateCount(1);
+        setDateList([]);
+        setAttendeeCount(0);
     };
 
     return (
@@ -65,17 +76,23 @@ export default function CreatePage() {
                                     type="date"
                                     name="date"
                                     value={dateList[index] || ""}
-                                    onChange={(e) => handleUpdateDateList(index, e.target.value)}
+                                    onChange={(e) =>
+                                        handleUpdateDateList(
+                                            index,
+                                            e.target.value
+                                        )
+                                    }
                                 />
-                                <button
-                                    type="button"
-                                    onClick={handleIncrementDateCount}
-                                >
-                                    +
-                                </button>
                             </div>
                         ))}
                     <div>
+                        <button
+                            type="button"
+                            onClick={handleIncrementDateCount}
+                            className="btn-small"
+                        >
+                            +
+                        </button>
                         <input
                             type="number"
                             placeholder="Attendees"
@@ -83,9 +100,14 @@ export default function CreatePage() {
                             onChange={handleChange}
                         />
                     </div>
-                    <button type="submit" disabled={!isValid}>
-                        Create
-                    </button>
+                    <div>
+                        <button type="reset" onClick={handleClearForm}>
+                            Reset
+                        </button>
+                        <button type="submit" disabled={!isValid}>
+                            Create
+                        </button>
+                    </div>
                 </form>
             </div>
         </>
