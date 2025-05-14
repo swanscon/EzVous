@@ -1,0 +1,23 @@
+# --- Java / Spring Boot ---
+*.class
+*.jar
+*.war
+*.log
+target/
+.idea/
+*.iml
+
+# --- Node / React ---
+node_modules/
+dist/
+.env
+.vite/
+
+# --- System Files ---
+.DS_Store
+Thumbs.db
+
+# --- OS/Editor/Tool junk ---
+.vscode/
+*.swp
+*.bak
