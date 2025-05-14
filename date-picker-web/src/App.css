@@ -39,3 +39,17 @@
   color: lightblue;
   box-shadow: none;
 }
+
+.float-container {
+  background-color: cornflowerblue;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  max-height: 100px;
+}
+
+.float-icon {
+  margin: auto;
+}
+

@@ -7,6 +7,7 @@ import ResultsPage from './pages/ResultsPage'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import SharePage from './pages/SharePage'
+import FloatingNav from './components/FloatingNav'
 
 function Layout({ children }) {
   const location = useLocation();
@@ -32,6 +33,7 @@ function App() {
         <Route path="/:id/submitted" element={<SuccessPage />} />
         <Route path="/:id/results" element={<ResultsPage />} />
       </Routes>
+      <FloatingNav />
     </Layout>
   )
 }

@@ -91,7 +91,8 @@ form input {
 
 input[type="text"],
 input[type="date"],
-input[type="number"] {
+input[type="number"],
+input[type="email"] {
   padding: 0.4rem 0.6rem;
   margin: 0.4rem 0;
   font-size: 1rem;
