@@ -35,6 +35,15 @@ public class DatePickerService {
         return datePickerRepo.findAll();
     }
 
+    public void updateSubmissionCount(String id) {
+        DatePicker datePicker = getDatePicker(id);
+        datePicker.setSubmissionCount(datePicker.getSubmissionCount() + 1);
+        datePickerRepo.save(datePicker);
+        if(datePicker.getSubmissionCount() == datePicker.getInviteCount()) {
+            System.out.println("Sending notification.");
+        }
+    }
+
     @Transactional
     public void deleteDatePicker(String id) {
         if (!datePickerRepo.existsById(id)) {

@@ -15,7 +15,7 @@ public class DatePickerDate {
     @ManyToOne
     @JoinColumn(name = "date_picker_id")
     private DatePicker datePicker;
-    private int voteCount = 1;
+    private int voteCount = 0;
 
     public DatePickerDate() {
     }

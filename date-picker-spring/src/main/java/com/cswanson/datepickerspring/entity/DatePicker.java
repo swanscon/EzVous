@@ -15,6 +15,7 @@ public class DatePicker {
     @OneToMany(mappedBy="datePicker", cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
     private List<DatePickerDate> dates = new ArrayList<>();
     private int inviteCount;
+    private int submissionCount = 0;
 
     @PrePersist
     public void assignId() {
@@ -53,6 +54,10 @@ public class DatePicker {
         return inviteCount;
     }
 
+    public int getSubmissionCount() {
+        return submissionCount;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -71,6 +76,10 @@ public class DatePicker {
 
     public void setInviteCount(int count) {
         this.inviteCount = count;
+    }
+
+    public void setSubmissionCount(int submissionCount) {
+        this.submissionCount = submissionCount;
     }
 
     public void addDate(DatePickerDate date) {

@@ -46,8 +46,8 @@ public class DatePickerController {
 
     @PutMapping("/{id}/vote")
     public ResponseEntity<Void> submitVote(@PathVariable String id, @RequestBody VoteRequest request) {
-        datePickerService.getDatePicker(id);
         datePickerDateService.updateVoteCount(request.getSelectedDateIds());
+        datePickerService.updateSubmissionCount(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
