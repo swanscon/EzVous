@@ -46,10 +46,82 @@
   position: fixed;
   bottom: 25px;
   right: 25px;
-  max-height: 100px;
+  height: 70px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: width 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.float-container:hover {
+  width: 260px;
+}
+
+.float-container .fixed-icon {
+  height: 50px;
 }
 
 .float-icon {
-  margin: auto;
+  height: 70px;
+  flex-shrink: 0;
 }
 
+.float-container:hover .float-icon {
+  margin-right: 10px;
+  transition: margin-right 0.2s ease-in-out;
+}
+
+.float-links {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.float-container:hover .float-links {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.float-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .9rem;
+  transition: color 0.2s;
+}
+
+.float-links a:hover {
+  color: lightgrey;
+}
+
+.fixed-container {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 25px;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.fixed-icon {
+  height: 70px;
+}
+
+.fixed-links {
+  display: flex;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.fixed-links a {
+  color: lightblue;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: .9rem;
+}
