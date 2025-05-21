@@ -85,13 +85,14 @@ export default function CreatePage() {
                                 />
                             </div>
                         ))}
+                        
                     <div>
                         <button
                             type="button"
                             onClick={handleIncrementDateCount}
                             className="btn-small"
                         >
-                            +
+                            Add Date
                         </button>
                         <input
                             type="number"

@@ -43,16 +43,10 @@ export default function PickerPage() {
                     <li
                         key={date.id}
                         onClick={() => handleVote(date.id)}
-                        style={{
-                            cursor: "pointer",
-                            border: selectedDates.includes(date.id)
-                                ? "3px solid lightgreen"
-                                : "3px solid #cccccc",
-                            backgroundColor: selectedDates.includes(date.id)
-                                ? "darkgreen"
-                                : "#cccccc",
-                        }}
-                        className="datePickerDate"
+                        className={selectedDates.includes(date.id)
+                            ? "picker-btn"
+                            : "picker-selected"
+                        }
                     >
                         {formatDate(date.date)}
                     </li>

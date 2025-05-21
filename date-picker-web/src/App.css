@@ -23,21 +23,51 @@
 .img-logo-sm {
   height: 50px;
   cursor: pointer;
+  transition: filter 0.5s ease-in-out;
+}
+
+.img-logo-sm:hover {
+  filter: saturate(350%);
 }
 
 .btn-small {
-  border-radius: 100%;
-  background: none;
-  color: slateblue;
-  font-size: 3em;
-  margin: 0;
+  margin: .4em;
   padding: 0;
   width: 10px;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  min-width: 50px !important;
+  height: 50px;
+  text-align: center;
 }
 
-.btn-small:hover {
-  color: lightblue;
-  box-shadow: none;
+/* .btn-small:hover {
+  box-shadow: 8px 8px 2px slateblue;
+} */
+
+.picker-btn {
+  cursor: pointer;
+  margin: 1em 0 1em 0;
+  border-radius: 2px;
+  background-color: lightgrey;
+  transition: box-shadow .2s ease-in-out;
+}
+
+.picker-btn:hover {
+  box-shadow: 8px 8px 2px lightgreen;
+}
+
+.picker-selected {
+  cursor: pointer;
+  margin: 1em 0 1em 0;
+  border-radius: 2px;
+  background-color: darkgreen;
+  transition: box-shadow .2s ease-in-out;
+}
+
+.picker-selected:hover {
+  box-shadow: 8px 8px 2px lightcoral;
 }
 
 .float-container {

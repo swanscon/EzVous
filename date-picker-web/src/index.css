@@ -58,7 +58,7 @@ button {
   background-color: darkgreen;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 2px;
   padding: 0.5rem 1rem;
   margin: 1em;
   font-weight: 600;
@@ -96,13 +96,19 @@ input[type="email"] {
   padding: 0.4rem 0.6rem;
   margin: 0.4rem 0;
   font-size: 1rem;
-  border-radius: 6px;
+  border-radius: 2px;
   width: 100%;
   max-width: 300px;
+  background-color: white;
+  color: black;
+  transition: box-shadow 0.2s ease-in-out;
+  box-shadow: 8px 8px 2px lightgrey;
 }
 
 input:focus {
   outline: none;
+  box-shadow: 8px 8px 2px slategrey;
+
 }
 
 ul {
@@ -119,11 +125,6 @@ li {
   /* border: 2px solid hidden; */
   margin-bottom: 0.4rem;
   font-weight: 500;
-}
-
-.datePickerDate {
-  border-radius: 0.2em;
-  margin: 1em 0 1em 0;
 }
 
 @media (prefers-color-scheme: light) {

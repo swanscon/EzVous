@@ -6,7 +6,7 @@ import cslogo from "../assets/cs-logo-link.svg";
 import coffeelogo from "../assets/coffee-logo-link.svg";
 import ghlogotp from "../assets/gh-logo-link-tp.svg";
 import cslogotp from "../assets/cs-logo-link-tp.svg";
-import coffeelogotp from "../assets/coffee-logo-link-tp.svg";
+import coffeelogotp from "../assets/heart-logo-link-tp.svg";
 
 const MOBILE_BREAKPOINT = 768;
 
