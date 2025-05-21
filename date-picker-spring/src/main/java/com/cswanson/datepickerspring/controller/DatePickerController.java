@@ -51,6 +51,12 @@ public class DatePickerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> submitEmail(@PathVariable String id, @RequestParam(name = "email") String email) {
+        datePickerService.updateEmail(id, email);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDatePicker(@PathVariable String id) {
         datePickerService.deleteDatePicker(id);

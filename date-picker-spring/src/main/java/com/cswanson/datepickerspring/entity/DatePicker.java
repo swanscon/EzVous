@@ -16,6 +16,7 @@ public class DatePicker {
     private List<DatePickerDate> dates = new ArrayList<>();
     private int inviteCount;
     private int submissionCount = 0;
+    private String email;
 
     @PrePersist
     public void assignId() {
@@ -58,6 +59,10 @@ public class DatePicker {
         return submissionCount;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -80,6 +85,10 @@ public class DatePicker {
 
     public void setSubmissionCount(int submissionCount) {
         this.submissionCount = submissionCount;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void addDate(DatePickerDate date) {

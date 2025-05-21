@@ -1,5 +1,6 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
+import submitEmail from "../data/submitEmail";
 
 export default function SharePage() {
     const { id } = useParams();
@@ -27,9 +28,10 @@ export default function SharePage() {
         setNotify(!notify);
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
+        await submitEmail(id, email);
         alert(
-            `An message will be sent to ${email} when all votes have been submitted.`
+            `A message will be sent to ${email} when all votes have been submitted.`
         );
         setNotify(!notify);
     };
