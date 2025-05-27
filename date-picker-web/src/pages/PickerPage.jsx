@@ -44,8 +44,8 @@ export default function PickerPage() {
                         key={date.id}
                         onClick={() => handleVote(date.id)}
                         className={selectedDates.includes(date.id)
-                            ? "picker-btn"
-                            : "picker-selected"
+                            ? "picker-selected"
+                            : "picker-btn"
                         }
                     >
                         {formatDate(date.date)}

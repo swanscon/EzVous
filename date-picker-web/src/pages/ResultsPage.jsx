@@ -21,8 +21,10 @@ export default function ResultsPage() {
         return voteColor(datePicker.inviteCount, date.voteCount);
     };
 
-    const checkMark = (date) => {
-        return date.voteCount === datePicker.inviteCount ? " ✅" : "";
+    const voteDisplay = (date) => {
+        return date.voteCount === datePicker.inviteCount
+            ? "✅"
+            : `${date.voteCount}`;
     };
 
     if (!datePicker) return <div>Loading...</div>;
@@ -41,11 +43,16 @@ export default function ResultsPage() {
                             }}
                             className="datePickerDate"
                         >
-                            {formatDate(date.date)}{checkMark(date)}
+                            <span>{formatDate(date.date)}</span>
+                            <span className="vote-display">
+                                {voteDisplay(date)}
+                            </span>
                         </li>
                     ))}
                 </ul>
-                <ResultsKey />
+                {/* <ResultsKey /> */}
+                <h4>Invites: {datePicker.inviteCount}</h4>
+                <h4>Submissions: {datePicker.submissionCount}</h4>
             </div>
         </div>
     );

@@ -39,7 +39,7 @@ public class DatePickerService {
         DatePicker datePicker = getDatePicker(id);
         datePicker.setSubmissionCount(datePicker.getSubmissionCount() + 1);
         datePickerRepo.save(datePicker);
-        if(datePicker.getSubmissionCount() == datePicker.getInviteCount()) {
+        if(datePicker.getSubmissionCount() == datePicker.getInviteCount() && datePicker.getEmail() != null) {
             System.out.println("Sending notification to: " + datePicker.getEmail());
         }
     }

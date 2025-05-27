@@ -50,7 +50,7 @@
   cursor: pointer;
   margin: 1em 0 1em 0;
   border-radius: 2px;
-  background-color: lightgrey;
+  background-color: rgb(158, 158, 158);
   transition: box-shadow .2s ease-in-out;
 }
 
@@ -70,9 +70,21 @@
   box-shadow: 8px 8px 2px lightcoral;
 }
 
+.float-footer {
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+  z-index: 999;
+  color: darkgrey;
+}
+
+.float-footer.center {
+  right: 25px;
+}
+
 .float-container {
   background-color: cornflowerblue;
-  border-radius: 10px;
+  border-radius: 3px;
   position: fixed;
   bottom: 25px;
   right: 25px;
@@ -81,12 +93,16 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
   z-index: 999;
 }
 
 .float-container:hover {
-  width: 260px;
+    box-shadow: 8px 8px 2px rgb(74, 109, 175);
+}
+
+.float-container.expanded {
+  width: 350px;
 }
 
 .float-container .fixed-icon {
@@ -96,44 +112,46 @@
 .float-icon {
   height: 70px;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
-.float-container:hover .float-icon {
-  margin-right: 10px;
-  transition: margin-right 0.2s ease-in-out;
+.float-container.expanded .float-icon {
+  margin-right: 20px;
+  border-right: 2px solid rgb(74, 109, 175);
+  transition: margin-right border-right 0.2s ease-in-out;
 }
 
 .float-links {
   display: flex;
   flex-direction: row;
-  gap: 6px;
+  gap: 20px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease-in-out;
 }
 
-.float-container:hover .float-links {
+.float-container.expanded .float-links {
   opacity: 1;
   pointer-events: auto;
 }
 
 .float-links a {
   color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: .9rem;
-  transition: color 0.2s;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  transition: text-shadow 0.2s;
 }
 
 .float-links a:hover {
-  color: lightgrey;
+  text-shadow: rgb(74, 109, 175) 5px 5px 2px;
 }
 
 .fixed-container {
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: 25px;
+  bottom: 60px;
   display: flex;
   justify-content: center;
   z-index: 999;
@@ -150,8 +168,18 @@
 }
 
 .fixed-links a {
-  color: lightblue;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: .9rem;
+  color: rgb(29, 48, 54);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+.datePickerDate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem 0;
+  list-style: none;
+  border-radius: 6px;
 }

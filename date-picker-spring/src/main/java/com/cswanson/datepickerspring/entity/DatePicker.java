@@ -16,7 +16,7 @@ public class DatePicker {
     private List<DatePickerDate> dates = new ArrayList<>();
     private int inviteCount;
     private int submissionCount = 0;
-    private String email;
+    private String email = null;
 
     @PrePersist
     public void assignId() {

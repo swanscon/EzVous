@@ -101,6 +101,7 @@ export default function CreatePage() {
                             onChange={handleChange}
                         />
                     </div>
+                    <br/>
                     <div>
                         <button type="reset" onClick={handleClearForm}>
                             Reset

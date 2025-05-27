@@ -8,41 +8,40 @@ import ghlogotp from "../assets/gh-logo-link-tp.svg";
 import cslogotp from "../assets/cs-logo-link-tp.svg";
 import coffeelogotp from "../assets/heart-logo-link-tp.svg";
 
-const MOBILE_BREAKPOINT = 768;
 
-export default function FloatingNav() {
-    const [isMobile, setIsMobile] = useState(
-        window.innerWidth < MOBILE_BREAKPOINT
-    );
 
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-        };
+export default function FloatingNav({ isMobile }) {
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    const [isClicked, setIsClicked] = useState(false);
+
+
+
+    const handleSetIsClicked = () => {
+        setIsClicked(!isClicked);
+    };
 
     return !isMobile ? (
-        <div className="float-container">
-            <img src={logo} className="float-icon" />
+        <div className={`float-container ${isClicked ? "expanded" : ""}`}>
+            <img src={logo} className="float-icon" onClick={handleSetIsClicked}/>
             <div className="float-links">
                 <Link to="https://github.com/swanscon/EzVous" target="_blank">
-                    <img src={ghlogotp} className="fixed-icon" alt="github" />
+                    {/* <img src={ghlogotp} className="fixed-icon" alt="github" /> */}
+                    GitHub
                 </Link>
                 <Link to="https://connorswanson.dev" target="_blank">
-                    <img src={cslogotp} className="fixed-icon" alt="cs logo" />
+                    {/* <img src={cslogotp} className="fixed-icon" alt="cs logo" /> */}
+                    Portfolio
                 </Link>
                 <Link
                     to="https://buymeacoffee.com/connorswanson"
                     target="_blank"
                 >
-                    <img
+                    {/* <img
                         src={coffeelogotp}
                         className="fixed-icon"
                         alt="support me"
-                    />
+                    /> */}
+                    Support
                 </Link>
             </div>
         </div>
@@ -50,16 +49,19 @@ export default function FloatingNav() {
         <div className="fixed-container">
             <div className="fixed-links">
                 <Link to="https://github.com/swanscon/EzVous" target="_blank">
-                    <img src={ghlogo} className="fixed-icon" />
+                    {/* <img src={ghlogo} className="fixed-icon" /> */}
+                    GitHub
                 </Link>
                 <Link to="https://connorswanson.dev" target="_blank">
-                    <img src={cslogo} className="fixed-icon" />
+                    {/* <img src={cslogo} className="fixed-icon" /> */}
+                    Portfolio
                 </Link>
                 <Link
                     to="https://buymeacoffee.com/connorswanson"
                     target="_blank"
                 >
-                    <img src={coffeelogo} className="fixed-icon" />
+                    {/* <img src={coffeelogo} className="fixed-icon" /> */}
+                    Support
                 </Link>
             </div>
         </div>
