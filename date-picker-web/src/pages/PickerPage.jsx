@@ -27,9 +27,19 @@ export default function PickerPage() {
     };
 
     const handleSubmit = async () => {
-        const success = await submitVotes(id, selectedDates);
-        if(success) navigate(`/${id}/submitted`, { state: { id: datePicker.id, title: datePicker.title } });
-        else alert("Unable to submit votes.");
+        const result = await submitVotes(id, selectedDates);
+        if (result === true) {
+            navigate(`/${id}/submitted`, {
+                state: { id: datePicker.id, title: datePicker.title },
+            });
+        } else if ((result === "MAX_SUBMISSIONS_REACHED")) {
+            navigate("/error", {
+                state: {
+                    message:
+                        "Maximum number of submissions has been reached for this rendezvous.",
+                },
+            });
+        } else alert("Unable to submit votes.");
     };
 
     if (!datePicker) return <div>Loading...</div>;
@@ -43,9 +53,10 @@ export default function PickerPage() {
                     <li
                         key={date.id}
                         onClick={() => handleVote(date.id)}
-                        className={selectedDates.includes(date.id)
-                            ? "picker-selected"
-                            : "picker-btn"
+                        className={
+                            selectedDates.includes(date.id)
+                                ? "picker-selected"
+                                : "picker-btn"
                         }
                     >
                         {formatDate(date.date)}

@@ -1,5 +1,6 @@
 import "./App.css";
 import HomePage from "./pages/HomePage";
+import ErrorPage from "./pages/ErrorPage";
 import CreatePage from "./pages/CreatePage";
 import PickerPage from "./pages/PickerPage";
 import SuccessPage from "./pages/SuccessPage";
@@ -42,6 +43,7 @@ function App() {
         <Layout>
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="/error" element={<ErrorPage />} />
                 <Route path="/new" element={<CreatePage />} />
                 <Route path="/:id" element={<PickerPage />} />
                 <Route path="/:id/share" element={<SharePage />} />

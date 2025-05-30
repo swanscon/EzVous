@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,9 +47,14 @@ public class DatePickerController {
 
     @PutMapping("/{id}/vote")
     public ResponseEntity<Void> submitVote(@PathVariable String id, @RequestBody VoteRequest request) {
-        datePickerDateService.updateVoteCount(request.getSelectedDateIds());
-        datePickerService.updateSubmissionCount(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        try {
+            datePickerDateService.updateVoteCount(request.getSelectedDateIds());
+            datePickerService.updateSubmissionCount(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IllegalStateException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+
     }
 
     @PutMapping("/{id}")
@@ -64,8 +70,10 @@ public class DatePickerController {
     }
 
     private DatePicker dtoToDatePicker(DatePickerRequest request) {
+        Optional<String> requestDescription = Optional.ofNullable(request.getDescription());
         return datePickerService.createDatePicker(
                 request.getTitle(),
+                requestDescription,
                 request.getInviteCount(),
                 dtoToDatePickerDateList(request.getDates())
         );

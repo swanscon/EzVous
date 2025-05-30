@@ -90,6 +90,7 @@ form input {
 }
 
 input[type="text"],
+input[type="textarea"],
 input[type="date"],
 input[type="number"],
 input[type="email"] {

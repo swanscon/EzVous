@@ -4,6 +4,7 @@ import submitForm from "../data/submitForm";
 
 export default function CreatePage() {
     const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [dateCount, setDateCount] = useState(1);
     const [dateList, setDateList] = useState([]);
     const [attendeeCount, setAttendeeCount] = useState(0);
@@ -13,6 +14,7 @@ export default function CreatePage() {
     const handleChange = (e) => {
         e.preventDefault();
         if (e.target.name === "title") setTitle(e.target.value);
+        else if (e.target.name === "description") setDescription(e.target.value);
         else if (e.target.name === "date") handleUpdateDateList(e.target.value);
         else if (e.target.name === "attendees")
             setAttendeeCount(e.target.value);
@@ -39,6 +41,7 @@ export default function CreatePage() {
         e.preventDefault();
         const [success, result] = await submitForm(
             title,
+            description,
             dateList,
             attendeeCount
         );
@@ -51,6 +54,7 @@ export default function CreatePage() {
 
     const handleClearForm = () => {
         setTitle("");
+        setDescription("");
         setDateCount(1);
         setDateList([]);
         setAttendeeCount(0);
@@ -65,6 +69,14 @@ export default function CreatePage() {
                             type="text"
                             placeholder="Title"
                             name="title"
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="textarea"
+                            placeholder="Description (Optional)"
+                            name="description"
                             onChange={handleChange}
                         />
                     </div>

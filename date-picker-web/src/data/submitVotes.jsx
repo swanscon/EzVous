@@ -9,6 +9,11 @@ export default async function submitVotes(datePickerId, selectedDateIds) {
             body: JSON.stringify({ selectedDateIds: selectedDateIds })
         });
 
+        if(response.status === 409) {
+            console.error("Max submissions reached for this rendezvous.");
+            return "MAX_SUBMISSIONS_REACHED";
+        }
+
         if(!response.ok) {
             throw new Error("Failed to submit votes.");
         }

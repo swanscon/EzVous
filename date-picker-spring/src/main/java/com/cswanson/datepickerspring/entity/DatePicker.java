@@ -12,6 +12,7 @@ public class DatePicker {
     @Column(unique=true)
     private String id;
     private String title;
+    private String description = null;
     @OneToMany(mappedBy="datePicker", cascade=CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval=true)
     private List<DatePickerDate> dates = new ArrayList<>();
     private int inviteCount;
@@ -47,6 +48,10 @@ public class DatePicker {
         return title;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public List<DatePickerDate> getDates() {
         return dates;
     }
@@ -69,6 +74,10 @@ public class DatePicker {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setDates(List<DatePickerDate> dates) {

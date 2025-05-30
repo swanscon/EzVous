@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DatePickerService {
@@ -17,9 +18,10 @@ public class DatePickerService {
         this.datePickerRepo = datePickerRepo;
     }
 
-    public DatePicker createDatePicker(String title, Integer voteCount, List<DatePickerDate> dates) {
+    public DatePicker createDatePicker(String title, Optional<String> description, Integer voteCount, List<DatePickerDate> dates) {
         DatePicker datePicker = new DatePicker();
         datePicker.setTitle(title);
+        datePicker.setDescription(description.orElse(""));
         datePicker.setInviteCount(voteCount);
         for(DatePickerDate date : dates) {
             datePicker.addDate(date);
@@ -37,10 +39,15 @@ public class DatePickerService {
 
     public void updateSubmissionCount(String id) {
         DatePicker datePicker = getDatePicker(id);
+        if (datePicker.getSubmissionCount() >= datePicker.getInviteCount()) {
+            throw new IllegalStateException("Maximum submissions already reached.");
+        }
         datePicker.setSubmissionCount(datePicker.getSubmissionCount() + 1);
         datePickerRepo.save(datePicker);
         if(datePicker.getSubmissionCount() == datePicker.getInviteCount() && datePicker.getEmail() != null) {
             System.out.println("Sending notification to: " + datePicker.getEmail());
+        } else if(datePicker.getSubmissionCount() == datePicker.getInviteCount()) {
+            System.out.println("Maximum submission count reached: " + datePicker.getInviteCount());
         }
     }
 

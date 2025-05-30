@@ -1,6 +1,7 @@
-export default async function submitForm(title, dateList, count) {
+export default async function submitForm(title, description, dateList, count) {
     const data ={
         title: title,
+        description: description,
         inviteCount: parseInt(count),
         dates: dateList.map(date => ({ date }))
     }
