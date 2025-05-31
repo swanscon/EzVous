@@ -70,6 +70,14 @@
   box-shadow: 8px 8px 2px lightcoral;
 }
 
+.picker-btn,
+.picker-selected {
+  display: block;
+  padding: 0.5em 1em;
+  margin: 1em auto;
+  user-select: none;
+}
+
 .float-footer {
   position: fixed;
   bottom: 25px;
@@ -178,8 +186,25 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 1rem;
-  margin: 0.25rem 0;
+  padding: 0.75rem 1rem;
+  margin: 0.4rem 0;
+  min-width: 200px;
+  border-radius: 3px;
   list-style: none;
-  border-radius: 6px;
+  cursor:default;
+  border-left: 4px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+  user-select: none;
+}
+
+.datePickerDate:hover {
+  border-color: #e2e2e2;
+}
+
+.datePickerDetails {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }

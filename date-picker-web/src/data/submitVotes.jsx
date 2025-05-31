@@ -10,17 +10,16 @@ export default async function submitVotes(datePickerId, selectedDateIds) {
         });
 
         if(response.status === 409) {
-            console.error("Max submissions reached for this rendezvous.");
-            return "MAX_SUBMISSIONS_REACHED";
+            return { success: false, code: 409, reason: "MAX_SUBMISSIONS_REACHED" };
         }
 
         if(!response.ok) {
-            throw new Error("Failed to submit votes.");
+            return { success: false, code: response.status, reason: "UNKNOWN" };
         }
         console.log("Votes submitted!");
-        return true;
+        return { success: true };
     } catch (error) {
         console.error("Error submitting votes: ", error.message);
-        return false;
+        return { success: false, code: 500, reason: "FETCH_ERROR" };
     }
 }

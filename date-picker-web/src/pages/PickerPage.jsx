@@ -28,18 +28,26 @@ export default function PickerPage() {
 
     const handleSubmit = async () => {
         const result = await submitVotes(id, selectedDates);
-        if (result === true) {
+        if (result.success) {
             navigate(`/${id}/submitted`, {
                 state: { id: datePicker.id, title: datePicker.title },
             });
-        } else if ((result === "MAX_SUBMISSIONS_REACHED")) {
+        } else if (result.reason === "MAX_SUBMISSIONS_REACHED") {
             navigate("/error", {
                 state: {
+                    code: result.code,
                     message:
                         "Maximum number of submissions has been reached for this rendezvous.",
                 },
             });
-        } else alert("Unable to submit votes.");
+        } else {
+            navigate("/error", {
+                state: {
+                    code: result.code,
+                    message: "Unable to submit votes.",
+                },
+            });
+        }
     };
 
     if (!datePicker) return <div>Loading...</div>;
@@ -47,6 +55,7 @@ export default function PickerPage() {
     return (
         <div>
             <h1>{datePicker.title}</h1>
+            <p>{datePicker.description}</p>
             <p>Select all dates you are available.</p>
             <ul>
                 {datePicker.dates.map((date) => (

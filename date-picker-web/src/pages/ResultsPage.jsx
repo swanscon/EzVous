@@ -22,7 +22,7 @@ export default function ResultsPage() {
     };
 
     const voteDisplay = (date) => {
-        return date.voteCount === datePicker.inviteCount
+        return date.voteCount >= datePicker.inviteCount
             ? "✅"
             : `${date.voteCount}`;
     };
@@ -33,6 +33,11 @@ export default function ResultsPage() {
         <div>
             <div>
                 <h1>{datePicker.title}</h1>
+                <p>{datePicker.description}</p>
+                <div className="datePickerDetails">
+                    <span><b>Invites: </b>{datePicker.inviteCount}</span>
+                    <span><b>Submissions: </b>{datePicker.submissionCount}</span>
+                </div>
                 <ul>
                     {datePicker.dates.map((date) => (
                         <li
@@ -44,15 +49,13 @@ export default function ResultsPage() {
                             className="datePickerDate"
                         >
                             <span>{formatDate(date.date)}</span>
-                            <span className="vote-display">
+                            <span style={{ fontWeight: "800" }}>
                                 {voteDisplay(date)}
                             </span>
                         </li>
                     ))}
                 </ul>
                 {/* <ResultsKey /> */}
-                <h4>Invites: {datePicker.inviteCount}</h4>
-                <h4>Submissions: {datePicker.submissionCount}</h4>
             </div>
         </div>
     );
