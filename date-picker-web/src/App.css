@@ -72,10 +72,32 @@
 
 .picker-btn,
 .picker-selected {
+  position: relative;
   display: block;
   padding: 0.5em 1em;
   margin: 1em auto;
   user-select: none;
+  text-align: center;
+}
+
+.date-text {
+  display: inline-block;
+  width: 100%;
+}
+
+.picker-x {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.picker-selected:hover .picker-x {
+  opacity: 1;
 }
 
 .float-footer {
@@ -207,4 +229,27 @@
   padding: 0.25rem 0;
   margin-bottom: 0.5rem;
   font-weight: 500;
+}
+
+.textarea-container {
+  position: relative;
+  display: inline-block;
+  /* max-width: 300px; */
+  width: 100%;
+}
+
+.textarea-container textarea {
+  /* box-sizing: border-box; */
+  padding-bottom: 1.5em;
+  resize: none;
+}
+
+.textarea-counter {
+  position: absolute;
+  bottom: 0px;
+  right: 25px;
+  font-size: 0.75rem;
+  color: grey;
+  pointer-events: none;
+  padding-left: 4px;
 }

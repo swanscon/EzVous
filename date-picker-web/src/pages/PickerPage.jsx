@@ -68,7 +68,12 @@ export default function PickerPage() {
                                 : "picker-btn"
                         }
                     >
-                        {formatDate(date.date)}
+                        <span className="date-text">
+                            {formatDate(date.date)}
+                        </span>
+                        {selectedDates.includes(date.id) && (
+                            <span className="picker-x">❌</span>
+                        )}
                     </li>
                 ))}
             </ul>

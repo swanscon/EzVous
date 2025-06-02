@@ -91,10 +91,11 @@ form input {
 }
 
 input[type="text"],
-input[type="textarea"],
 input[type="date"],
 input[type="number"],
-input[type="email"] {
+input[type="email"],
+textarea {
+  font-family: 	"Helvetica Neue", "Segoe UI", sans-serif;
   padding: 0.4rem 0.6rem;
   margin: 0.4rem 0;
   font-size: 1rem;
@@ -107,7 +108,8 @@ input[type="email"] {
   box-shadow: 8px 8px 2px lightgrey;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: none;
   box-shadow: 8px 8px 2px slategrey;
 

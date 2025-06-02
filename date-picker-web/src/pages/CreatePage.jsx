@@ -72,13 +72,15 @@ export default function CreatePage() {
                             onChange={handleChange}
                         />
                     </div>
-                    <div>
-                        <input
-                            type="textarea"
+                    <div className="textarea-container">
+                        <textarea
+                            maxLength={255}
+                            rows={5}
                             placeholder="Description (Optional)"
                             name="description"
                             onChange={handleChange}
                         />
+                        <p className="textarea-counter">{description ? description.length : 0}/255</p>
                     </div>
                     {Array(dateCount)
                         .fill(null)
@@ -108,7 +110,7 @@ export default function CreatePage() {
                         </button>
                         <input
                             type="number"
-                            placeholder="Attendees"
+                            placeholder="Invitations"
                             name="attendees"
                             onChange={handleChange}
                         />

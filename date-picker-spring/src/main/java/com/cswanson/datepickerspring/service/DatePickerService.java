@@ -3,6 +3,7 @@ package com.cswanson.datepickerspring.service;
 import com.cswanson.datepickerspring.entity.DatePicker;
 import com.cswanson.datepickerspring.entity.DatePickerDate;
 import com.cswanson.datepickerspring.repository.DatePickerRepo;
+import com.mailjet.client.MailjetClient;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +14,11 @@ import java.util.Optional;
 public class DatePickerService {
 
     private final DatePickerRepo datePickerRepo;
+    private final MailjetEmailService mailjetEmailService;
 
-    public DatePickerService(DatePickerRepo datePickerRepo) {
+    public DatePickerService(DatePickerRepo datePickerRepo, MailjetEmailService mailjetEmailService) {
         this.datePickerRepo = datePickerRepo;
+        this.mailjetEmailService = mailjetEmailService;
     }
 
     public DatePicker createDatePicker(String title, Optional<String> description, Integer voteCount, List<DatePickerDate> dates) {
@@ -45,7 +48,11 @@ public class DatePickerService {
         datePicker.setSubmissionCount(datePicker.getSubmissionCount() + 1);
         datePickerRepo.save(datePicker);
         if(datePicker.getSubmissionCount() == datePicker.getInviteCount() && datePicker.getEmail() != null) {
-            System.out.println("Sending notification to: " + datePicker.getEmail());
+            String subject = "All responses are in for: " + datePicker.getTitle();
+            String html = "<h3>All submissions have been received for your rendezvous: <strong>"
+                    + datePicker.getTitle()
+                    + "</strong>.</h3><p>You may now check the results at your convenience.</p>";
+            mailjetEmailService.sendEmail(datePicker.getEmail(), subject, html);
         } else if(datePicker.getSubmissionCount() == datePicker.getInviteCount()) {
             System.out.println("Maximum submission count reached: " + datePicker.getInviteCount());
         }
