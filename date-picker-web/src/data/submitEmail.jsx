@@ -1,6 +1,6 @@
 export default async function submitEmail(datePickerId, email) {
     try {
-        const response = await fetch(`http://localhost:8080/api/datepicker/${datePickerId}?email=${email}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/datepicker/${datePickerId}?email=${email}`, {
             method: 'PUT',
         });
 

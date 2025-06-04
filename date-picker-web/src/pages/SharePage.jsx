@@ -12,7 +12,7 @@ export default function SharePage() {
     const [notify, setNotify] = useState(false);
     const [email, setEmail] = useState("");
 
-    const shareURL = `http://localhost:5173/${id}`;
+    const shareURL = `${import.meta.env.VITE_REACT_URL}/${id}`;
 
     const handleCopy = async () => {
         try {

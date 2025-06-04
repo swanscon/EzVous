@@ -1,7 +1,7 @@
 export default async function submitVotes(datePickerId, selectedDateIds) {
 
     try {
-        const response = await fetch(`http://localhost:8080/api/datepicker/${datePickerId}/vote`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/datepicker/${datePickerId}/vote`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

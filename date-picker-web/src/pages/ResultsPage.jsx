@@ -9,7 +9,7 @@ export default function ResultsPage() {
     const [datePicker, setDatePicker] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/datepicker/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/api/datepicker/${id}`)
             .then((result) => result.json())
             .then((data) => setDatePicker(data))
             .catch((error) =>

@@ -10,7 +10,7 @@ export default function PickerPage() {
     const [selectedDates, setSelectedDates] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/datepicker/${id}`)
+        fetch(`${import.meta.env.VITE_API_URL}/api/datepicker/${id}`)
             .then((result) => result.json())
             .then((data) => setDatePicker(data))
             .catch((error) =>
