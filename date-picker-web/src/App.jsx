@@ -51,16 +51,9 @@ function App() {
                 <Route path="/:id/results" element={<ResultsPage />} />
             </Routes>
             <FloatingNav isMobile={isMobile} />
-
-            {!isMobile ? (
-                <div
-                // className={`float-footer ${isMobile ? "center" : ""}`}
-                >
-                    © 2025 Connor Swanson, Powered by React
-                </div>
-            ) : (
-                <></>
-            )}
+            <div className={`float-footer ${isMobile ? "center" : ""}`}>
+                © 2025 Connor Swanson, Powered by React
+            </div>
         </Layout>
     );
 }
