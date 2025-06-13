@@ -25,23 +25,15 @@ export default function FloatingNav({ isMobile }) {
             <img src={logo} className="float-icon" onClick={handleSetIsClicked}/>
             <div className="float-links">
                 <Link to="https://github.com/swanscon/EzVous" target="_blank">
-                    {/* <img src={ghlogotp} className="fixed-icon" alt="github" /> */}
                     GitHub
                 </Link>
                 <Link to="https://connorswanson.dev" target="_blank">
-                    {/* <img src={cslogotp} className="fixed-icon" alt="cs logo" /> */}
                     Portfolio
                 </Link>
                 <Link
                     to="https://buymeacoffee.com/connorswanson"
                     target="_blank"
                 >
-                    {/* <img
-                        src={coffeelogotp}
-                        className="fixed-icon"
-                        alt="support me"
-                    /> */}
-                    Support
                 </Link>
             </div>
         </div>
@@ -49,18 +41,15 @@ export default function FloatingNav({ isMobile }) {
         <div className="fixed-container">
             <div className="fixed-links">
                 <Link to="https://github.com/swanscon/EzVous" target="_blank">
-                    {/* <img src={ghlogo} className="fixed-icon" /> */}
                     GitHub
                 </Link>
                 <Link to="https://connorswanson.dev" target="_blank">
-                    {/* <img src={cslogo} className="fixed-icon" /> */}
                     Portfolio
                 </Link>
                 <Link
                     to="https://buymeacoffee.com/connorswanson"
                     target="_blank"
                 >
-                    {/* <img src={coffeelogo} className="fixed-icon" /> */}
                     Support
                 </Link>
             </div>

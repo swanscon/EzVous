@@ -51,7 +51,9 @@ public class DatePickerService {
             String subject = "All responses are in for: " + datePicker.getTitle();
             String html = "<h3>All submissions have been received for your rendezvous: <strong>"
                     + datePicker.getTitle()
-                    + "</strong>.</h3><p>You may now check the results at your convenience.</p>";
+                    + "</strong>.</h3><p>You may now check the <a href='https://ezvous.app/"
+                    + datePicker.getId()
+                    + "/results'>results</a> at your convenience.</p>";
             mailjetEmailService.sendEmail(datePicker.getEmail(), subject, html);
         } else if(datePicker.getSubmissionCount() == datePicker.getInviteCount()) {
             System.out.println("Maximum submission count reached: " + datePicker.getInviteCount());

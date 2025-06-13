@@ -110,6 +110,7 @@
 
 .float-footer.center {
   right: 25px;
+  bottom: 5px;
 }
 
 .float-container {
@@ -178,13 +179,14 @@
 }
 
 .fixed-container {
+  /* margin-top: 3rem; */
   width: 100%;
   position: fixed;
   left: 0;
-  bottom: 60px;
+  bottom: 30px;
   display: flex;
   justify-content: center;
-  z-index: 999;
+  /* z-index: 999; */
 }
 
 .fixed-icon {
